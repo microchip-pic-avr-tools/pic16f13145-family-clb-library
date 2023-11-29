@@ -1,0 +1,101 @@
+pipeline {
+    agent {
+        kubernetes {
+            defaultContainer ' python'
+            yaml """
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                    - name: python
+                      image: artifacts.microchip.com:7999/microchip/citd/python:3.x
+                      imagePullPolicy: Always
+                      command: ['cat']
+                      tty: true
+                      resources:
+                        requests:
+                          cpu: 1
+                          memory: 1Gi
+                        limits:
+                          cpu: 2
+                          memory: 2Gi
+                """
+        }
+    }
+
+    environment {
+        // Tags should be of the format <major>.<minor>.<micro>
+        // Leading zeroes or multiple zeroes will not be accepted, i.e.
+        // 0.0.1 - OK
+        // 00.00.1 - NOT OK
+        // 0.10.1 - OK
+        // 01.10.1 - NOT OK
+        SEMVER_REGEX = '^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$'
+        REPO_NAME = 'pic16f13145-family-clb-library'
+        GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
+        DEPLOY_TOOL_URL = 'https://bitbucket.microchip.com/scm/citd/tool-github-deploy.git'
+        SOURCE_URL = "https://bitbucket.microchip.com/scm/logic-lib/${REPO_NAME}.git"
+        DEPLOY_BRANCHES = 'main'
+    }
+
+    options {
+        timestamps()
+        timeout(time: 20, unit: 'MINUTES')
+    }
+
+    stages {
+        stage('github-deploy') {
+            when {
+                not {
+                    changeRequest()
+                }
+                tag pattern: "${env.SEMVER_REGEX}", comparator: "REGEXP"
+            }
+            steps {
+                script {
+                    def githubObj = getGiHubInfo()
+                    def gitHubRepo = githubObj.repoName
+
+                    downloadDeployTool()
+
+
+                    withCredentials([usernamePassword(credentialsId: '8bit-examples.github.com', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
+                        execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -deploy=true -gpat=${USER_PASS} -dgid=${USER_NAME} -dburl=${env.SOURCE_URL} -dgurl=${env.GITHUB_URL} -dbranch=${env.DEPLOY_BRANCHES} -dtag=${env.TAG_NAME} -dmfd=true")
+                    }
+
+                    withCredentials([usernamePassword(credentialsId: '8bit-examples.github.com', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
+                        execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -rlo=true -gpat=${USER_PASS} -dgid=${USER_NAME} -rpn=${gitHubRepo} -rltv=${env.TAG_NAME} -rltt=${env.TAG_NAME} -dmfd=true")
+                    }
+
+                    currentBuild.description = "${env.TAG_NAME} => <a href=\"${GITHUB_URL}\">microchip-pic-avr-examples/${REPO_NAME}</a>"
+                }
+            }
+        }
+    }
+}
+
+def execute(String cmd) {
+    if(isUnix()) {
+        sh cmd
+    } else {
+        bat cmd
+    }
+}
+
+def getGiHubInfo()
+{
+    def githubObj = [
+        'ownerName':'',
+        'repoName':''
+        ]
+    String[] splitURLString = "${env.GITHUB_URL}".split("/")
+    githubObj.repoName = splitURLString[splitURLString.size()-1]
+    githubObj.ownerName = splitURLString[splitURLString.size()-2]
+    return githubObj
+}
+
+def downloadDeployTool()
+{
+    execute("git clone ${env.DEPLOY_TOOL_URL}")
+    execute("chmod +x tool-github-deploy/tool-github-deploy/tool-github-deploy.py")
+}

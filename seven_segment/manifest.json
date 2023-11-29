@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "seven_segment",
+    "files": [
+        {
+            "name": "seven_segment",
+            "file": "seven_segment.sch",
+            "id": "d0d24c48-ace2-48cc-9f70-a0d8f37ed6be",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

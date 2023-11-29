@@ -59,11 +59,11 @@ pipeline {
                     downloadDeployTool()
 
 
-                    withCredentials([usernamePassword(credentialsId: '8bit-examples.github.com', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
+                    withCredentials([usernamePassword(credentialsId: 'pic-avr-github-admin-token-mcu8jenkins', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
                         execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -deploy=true -gpat=${USER_PASS} -dgid=${USER_NAME} -dburl=${env.SOURCE_URL} -dgurl=${env.GITHUB_URL} -dbranch=${env.DEPLOY_BRANCHES} -dtag=${env.TAG_NAME} -dmfd=true")
                     }
 
-                    withCredentials([usernamePassword(credentialsId: '8bit-examples.github.com', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
+                    withCredentials([usernamePassword(credentialsId: 'pic-avr-github-admin-token-mcu8jenkins', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
                         execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -rlo=true -gpat=${USER_PASS} -dgid=${USER_NAME} -rpn=${gitHubRepo} -rltv=${env.TAG_NAME} -rltt=${env.TAG_NAME} -dmfd=true")
                     }
 

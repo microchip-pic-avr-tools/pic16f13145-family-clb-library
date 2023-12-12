@@ -32,10 +32,17 @@ pipeline {
         // 01.10.1 - NOT OK
         SEMVER_REGEX = '^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$'
         REPO_NAME = 'pic16f13145-family-clb-library'
-        GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
+        // TODO revert when done developing
+        //GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
+        GITHUB_URL = "https://github.com/mchpTestArea/${REPO_NAME}"
         DEPLOY_TOOL_URL = 'https://bitbucket.microchip.com/scm/citd/tool-github-deploy.git'
         SOURCE_URL = "https://bitbucket.microchip.com/scm/logic-lib/${REPO_NAME}.git"
-        DEPLOY_BRANCHES = 'main'
+        // TODO revertt when done developing
+        //DEPLOY_BRANCHES = 'main'
+        DEPLOY_BRANCHES = 'feature/LOGIC-999-setup-cicd-flow-for-libraries'
+        // TODO revert when done developing
+        //GITHUB_CREDENTIALS = 'pic-avr-github-admin-token-mcu8jenkins'
+        GITHUB_CREDENTIALS = 'xedbg-tools-github-publish-access-token-mcu8jenkins'
     }
 
     options {
@@ -59,11 +66,11 @@ pipeline {
                     downloadDeployTool()
 
 
-                    withCredentials([usernamePassword(credentialsId: 'pic-avr-github-admin-token-mcu8jenkins', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
+                    withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIALS, usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
                         execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -deploy=true -gpat=${USER_PASS} -dgid=${USER_NAME} -dburl=${env.SOURCE_URL} -dgurl=${env.GITHUB_URL} -dbranch=${env.DEPLOY_BRANCHES} -dtag=${env.TAG_NAME} -dmfd=true")
                     }
 
-                    withCredentials([usernamePassword(credentialsId: 'pic-avr-github-admin-token-mcu8jenkins', usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
+                    withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIALS, usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
                         execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -rlo=true -gpat=${USER_PASS} -dgid=${USER_NAME} -rpn=${gitHubRepo} -rltv=${env.TAG_NAME} -rltt=${env.TAG_NAME} -dmfd=true")
                     }
 

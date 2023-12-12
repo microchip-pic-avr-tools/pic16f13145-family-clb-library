@@ -34,7 +34,7 @@ pipeline {
         REPO_NAME = 'pic16f13145-family-clb-library'
         // TODO revert when done developing
         //GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
-        GITHUB_URL = "https://github.com/mchpTestArea/${REPO_NAME}"
+        GITHUB_URL = "https://github.com/mchpTestArea/logic-lib"
         DEPLOY_TOOL_URL = 'https://bitbucket.microchip.com/scm/citd/tool-github-deploy.git'
         SOURCE_URL = "https://bitbucket.microchip.com/scm/logic-lib/${REPO_NAME}.git"
         // TODO revertt when done developing

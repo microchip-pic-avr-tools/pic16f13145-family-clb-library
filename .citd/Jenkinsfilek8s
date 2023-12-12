@@ -67,11 +67,11 @@ pipeline {
 
 
                     withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIALS, usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
-                        execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -deploy=true -gpat=${USER_PASS} -dgid=${USER_NAME} -dburl=${env.SOURCE_URL} -dgurl=${env.GITHUB_URL} -dbranch=${env.DEPLOY_BRANCHES} -dtag=${env.TAG_NAME} -dmfd=true -debug_mode=true")
+                        execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -deploy=true -gpat=${USER_PASS} -dgid=${USER_NAME} -dburl=${env.SOURCE_URL} -dgurl=${env.GITHUB_URL} -dbranch=${env.DEPLOY_BRANCHES} -dtag=${env.TAG_NAME} -dmfd=true -dm=true")
                     }
 
                     withCredentials([usernamePassword(credentialsId: GITHUB_CREDENTIALS, usernameVariable: 'USER_NAME', passwordVariable:'USER_PASS' )]) {
-                        execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -rlo=true -gpat=${USER_PASS} -dgid=${USER_NAME} -rpn=${gitHubRepo} -rltv=${env.TAG_NAME} -rltt=${env.TAG_NAME} -dmfd=true -debug_mode=true")
+                        execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -rlo=true -gpat=${USER_PASS} -dgid=${USER_NAME} -rpn=${gitHubRepo} -rltv=${env.TAG_NAME} -rltt=${env.TAG_NAME} -dmfd=true -dm=true")
                     }
 
                     currentBuild.description = "${env.TAG_NAME} => <a href=\"${GITHUB_URL}\">microchip-pic-avr-examples/${REPO_NAME}</a>"

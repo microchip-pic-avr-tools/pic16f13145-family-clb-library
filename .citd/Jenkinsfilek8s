@@ -32,17 +32,11 @@ pipeline {
         // 01.10.1 - NOT OK
         SEMVER_REGEX = '^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$'
         REPO_NAME = 'pic16f13145-family-clb-library'
-        // TODO revert when done developing
-        //GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
-        GITHUB_URL = "https://github.com/mchpTestArea/logic-lib"
+        GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
         DEPLOY_TOOL_URL = 'https://bitbucket.microchip.com/scm/citd/tool-github-deploy.git'
         SOURCE_URL = "https://bitbucket.microchip.com/scm/logic-lib/${REPO_NAME}.git"
-        // TODO revertt when done developing
-        //DEPLOY_BRANCHES = 'main'
-        DEPLOY_BRANCHES = 'feature/LOGIC-999-setup-cicd-flow-for-libraries'
-        // TODO revert when done developing
-        //GITHUB_CREDENTIALS = 'pic-avr-github-admin-token-mcu8jenkins'
-        GITHUB_CREDENTIALS = 'xedbg-tools-github-publish-access-token-mcu8jenkins'
+        DEPLOY_BRANCHES = 'main'
+        GITHUB_CREDENTIALS = 'pic-avr-github-admin-token-mcu8jenkins'
     }
 
     options {

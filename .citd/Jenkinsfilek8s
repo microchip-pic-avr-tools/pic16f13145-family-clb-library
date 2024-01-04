@@ -50,6 +50,8 @@ pipeline {
                 not {
                     changeRequest()
                 }
+                // Only tags on main branch will be pushed to github
+                branch 'main'
                 tag pattern: "${env.SEMVER_REGEX}", comparator: "REGEXP"
             }
             steps {

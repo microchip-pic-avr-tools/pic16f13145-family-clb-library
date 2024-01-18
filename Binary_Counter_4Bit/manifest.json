@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "Binary_Counter_4Bit",
+    "files": [
+        {
+            "name": "Binary_Counter_4Bit",
+            "file": "Binary_Counter_4Bit.sch",
+            "id": "bc961f95-aab6-4bca-b7f8-660c4ef6d2ab",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

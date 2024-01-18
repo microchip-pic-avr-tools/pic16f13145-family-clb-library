@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "Up_Down_Counter_4Bit",
+    "files": [
+        {
+            "name": "Up_Down_Counter_4Bit",
+            "file": "Up_Down_Counter_4Bit.sch",
+            "id": "01e3b3e6-a4d5-4ade-aa0e-75a1f217fdef",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

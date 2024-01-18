@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "Johnson_Counter_4Bit",
+    "files": [
+        {
+            "name": "Johnson_Counter_4Bit",
+            "file": "Johnson_Counter_4Bit.sch",
+            "id": "269d09b9-1bb0-4200-b0e0-3c4861668843",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

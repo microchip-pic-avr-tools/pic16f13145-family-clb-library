@@ -20,7 +20,7 @@ The schematic is shown in the below image. A positive edge detector is used for 
 
 ## Demo
 
-The demo shows an exemple of using the counter. TMR0_Overflow is used as a Clock input.
+The demo shows an example of using the counter. TMR0_Overflow is used as a Clock input.
 <br><img src="images/binary_counter_4bit_demo.png" width="600">
 
  The waveforms obtained on each output pin are shown in the below image.

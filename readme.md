@@ -4,8 +4,8 @@ This is a library of logic modules (snippets) which can be used in the CLB Synth
 
 ## Counters
 
-- [Binary Counter 4Bit](Binary_Counter_4Bit)
-- [Binary Down Counter 4Bit](Binary_Down_Counter_4Bit)
-- [Up/Down Counter 4Bit](Up_Down_Counter_4Bit)
-- [Johnson Counter 4Bit](Johnson_Counter_4Bit)
-- [Ring Counter 4Bit](Ring_Counter_4Bit)
+- [4-Bit Binary Counter](count_4b)
+- [4-Bit Binary Down Counter](count_down_4b)
+- [4-Bit Up/Down Counter](count_up_down_4b)
+- [4-Bit Johnson Counter](count_johnson_4b)
+- [4-Bit Ring Counter](count_ring_4b)

@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "count_johnson_4b",
+    "files": [
+        {
+            "name": "count_johnson_4b",
+            "file": "count_johnson_4b.sch",
+            "id": "269d09b9-1bb0-4200-b0e0-3c4861668843",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "count_ring_4b",
+    "files": [
+        {
+            "name": "count_ring_4b",
+            "file": "count_ring_4b.sch",
+            "id": "c9982781-e7fc-42bb-8367-f9aff74cd791",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

@@ -1,0 +1,14 @@
+{
+    "type": "CLB Synthesizer Library Module",
+    "version": "1.0",
+    "name": "count_down_4b",
+    "files": [
+        {
+            "name": "count_down_4b",
+            "file": "count_down_4b.sch",
+            "id": "70c62934-4b41-4be0-807a-fcdc58cb2c70",
+            "type": "diagram"
+        }
+    ],
+    "entryFile": ""
+}

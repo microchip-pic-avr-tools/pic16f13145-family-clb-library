@@ -32,7 +32,7 @@ pipeline {
         // 01.10.1 - NOT OK
         SEMVER_REGEX = '^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$'
         REPO_NAME = 'pic16f13145-family-clb-library'
-        GITHUB_URL = "https://github.com/microchip-pic-avr-examples/${REPO_NAME}"
+        GITHUB_URL = "https://github.com/microchip-pic-avr-tools/${REPO_NAME}"
         DEPLOY_TOOL_URL = 'https://bitbucket.microchip.com/scm/citd/tool-github-deploy.git'
         SOURCE_URL = "https://bitbucket.microchip.com/scm/logic-lib/${REPO_NAME}.git"
         DEPLOY_BRANCHES = 'main'
@@ -69,7 +69,7 @@ pipeline {
                         execute("python tool-github-deploy/tool-github-deploy/tool-github-deploy.py -rlo=true -gpat=${USER_PASS} -dgid=${USER_NAME} -rpn=${gitHubRepo} -rltv=${env.TAG_NAME} -rltt=${env.TAG_NAME} -dmfd=true -dm=true")
                     }
 
-                    currentBuild.description = "${env.TAG_NAME} => <a href=\"${GITHUB_URL}\">microchip-pic-avr-examples/${REPO_NAME}</a>"
+                    currentBuild.description = "${env.TAG_NAME} => <a href=\"${GITHUB_URL}\">microchip-pic-avr-tools/${REPO_NAME}</a>"
                 }
             }
         }
